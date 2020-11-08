@@ -1,0 +1,8 @@
+name: LlamaShop
+version: 1.0.0-SNAPSHOT
+api: 1.0.0
+author: Mundschutziii
+main: net.lldv.llamashop.LlamaShop
+description: A ShopUI addon for LlamaEconomy
+depend:
+  - LlamaEconomy
