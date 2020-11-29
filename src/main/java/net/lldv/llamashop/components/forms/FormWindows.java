@@ -1,6 +1,7 @@
 package net.lldv.llamashop.components.forms;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.element.ElementInput;
 import cn.nukkit.item.Item;
@@ -8,6 +9,7 @@ import cn.nukkit.level.Sound;
 import cn.nukkit.network.protocol.PlaySoundPacket;
 import net.lldv.llamaeconomy.LlamaEconomy;
 import net.lldv.llamashop.LlamaShop;
+import net.lldv.llamashop.components.event.ShopSellItemEvent;
 import net.lldv.llamashop.components.forms.custom.CustomForm;
 import net.lldv.llamashop.components.forms.simple.SimpleForm;
 import net.lldv.llamashop.components.language.Language;
@@ -73,6 +75,7 @@ public class FormWindows {
                 if (player.getInventory().canAddItem(finalItem)) {
                     player.getInventory().addItem(finalItem);
                     LlamaEconomy.getAPI().reduceMoney(player.getName(), newPrice);
+                    Server.getInstance().getPluginManager().callEvent(new ShopSellItemEvent(player, name, item, meta, amount, price));
                     player.sendMessage(Language.get("item-bought", name, amount, LlamaEconomy.getAPI().getMoneyFormat().format(newPrice)));
                     this.playSound(player, Sound.NOTE_HARP);
                 } else {
