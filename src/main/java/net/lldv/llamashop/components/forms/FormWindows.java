@@ -7,6 +7,7 @@ import cn.nukkit.form.element.ElementInput;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Sound;
 import cn.nukkit.network.protocol.PlaySoundPacket;
+import lombok.RequiredArgsConstructor;
 import net.lldv.llamaeconomy.LlamaEconomy;
 import net.lldv.llamashop.LlamaShop;
 import net.lldv.llamashop.components.event.ShopSellItemEvent;
@@ -16,13 +17,10 @@ import net.lldv.llamashop.components.language.Language;
 
 import java.util.concurrent.CompletableFuture;
 
+@RequiredArgsConstructor
 public class FormWindows {
 
     private final LlamaShop instance;
-
-    public FormWindows(LlamaShop instance) {
-        this.instance = instance;
-    }
 
     public void openShop(Player player) {
         SimpleForm.Builder form = new SimpleForm.Builder(Language.getNP("shop-title"), Language.getNP("shop-content"));

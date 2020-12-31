@@ -17,17 +17,13 @@ public class LlamaShop extends PluginBase {
     public LinkedHashMap<String, String[]> cachedShopItem = new LinkedHashMap<>();
 
     @Getter
-    private static LlamaShop instance;
-
-    @Getter
     private FormWindows formWindows;
 
     @Override
     public void onEnable() {
-        instance = this;
         try {
             this.saveDefaultConfig();
-            Language.init();
+            Language.init(this);
             this.loadPlugin();
             this.formWindows = new FormWindows(this);
             this.getLogger().info("§aLlamaShop successfully started.");
